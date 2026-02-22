@@ -1,0 +1,347 @@
+:root {
+  --primary: #227093;
+  --secondary: #ff5252;
+  --background: #eee;
+  --highlight: #ffda79;
+  /* Theme color */
+  --theme: var(--primary);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Ensure scrollbars are visible on all pages */
+html {
+  overflow-y: scroll;
+  scrollbar-width: auto;
+  -ms-overflow-style: scrollbar;
+}
+
+html::-webkit-scrollbar {
+  display: block;
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+body {
+  overflow-y: auto;
+}
+
+*,
+body {
+  font-family: "Zen Old Mincho", serif;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif !important;
+}
+
+.font-bodoni {
+  font-family: "Bodoni Moda", serif !important;
+}
+
+.section-container {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+.text-12-16 {
+  font-size: 12px;
+}
+.text-14-18 {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .text-12-16 {
+    font-size: 13px;
+  }
+  .text-14-18 {
+    font-size: 15px;
+  }
+
+  .section-container {
+    padding-top: 7rem; /* pt-28 */
+    padding-bottom: 5rem; /* pb-20 */
+  }
+}
+@media (min-width: 1024px) {
+  .text-12-16 {
+    font-size: 14px;
+  }
+  .text-14-18 {
+    font-size: 16px;
+  }
+
+  .section-container {
+    padding-top: 8rem; /* pt-36 */
+    padding-bottom: 6rem; /* pb-24 */
+  }
+}
+@media (min-width: 1280px) {
+  .text-12-16 {
+    font-size: 16px;
+  }
+  .text-14-18 {
+    font-size: 18px;
+  }
+}
+
+// Color
+
+.green-gradient {
+  background: linear-gradient(90deg, #3f9f6f 0%, #3f9f6f 100%);
+}
+
+/* Nav: show active line image only on the active anchor (scroll/hash) */
+.nav-link.nav-active .nav-active-line {
+  opacity: 1;
+}
+
+.blue-gradient {
+  background: linear-gradient(90deg, #73b1e1 0%, #008fd2 60%, #0079c1 100%);
+}
+
+.blue-gradient:hover {
+  background: linear-gradient(90deg,rgb(107, 175, 226) 0%,rgb(5, 150, 218) 60%,rgb(0, 111, 175) 100%);
+}
+
+.blue-gradient-hover {
+  position: relative;
+  isolation: isolate;
+}
+.blue-gradient-hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgb(162, 202, 233) 0%,
+    rgb(93, 191, 236) 60%,
+    rgb(26, 147, 218) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.blue-gradient-hover:hover::before {
+  opacity: 1;
+}
+.blue-gradient-hover button,
+.blue-gradient-hover svg {
+  transition: color 0.35s ease;
+}
+
+.green-gradient-text {
+  color: #3f9f6f;
+}
+.blue-gradient-text {
+  background: linear-gradient(90deg, #73b1e1 0%, #008fd2 60%, #0079c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: red;
+  /* The following makes the gradient work for text only */
+  display: inline-block;
+}
+
+// Accordion - Faq
+
+
+.tab {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.tab__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.35s;
+}
+
+.tab input:checked ~ .tab__content {
+  max-height: 10rem;
+}
+
+/* Visual styles */
+.accordion {
+  overflow: hidden;
+}
+
+.tab__label,
+.tab__close {
+  display: flex;
+  color: black;
+  background: #fff;
+  cursor: pointer;
+}
+
+.tab__label {
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+@media (max-width: 767px) {
+  .tab__label {
+    padding: 8px 30px 8px 16px;
+  }
+}
+
+.tab input:checked + .tab__label .fa-caret-down {
+  display: none;
+}
+
+/* Accordion + / - indicators: "-" when expanded, "+" when collapsed */
+.tab input:checked + .tab__label .expanded-indicator {
+  display: inline;
+}
+.tab input:checked + .tab__label .collapsed-indicator {
+  display: none;
+}
+.tab input:not(:checked) + .tab__label .expanded-indicator {
+  display: none;
+}
+.tab input:not(:checked) + .tab__label .collapsed-indicator {
+  display: inline;
+}
+
+.tab__content p {
+  margin: 0;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+/* Arrow animation */
+.tab input:not(:checked) + .tab__label:hover::after {
+  animation: bounce 0.5s infinite;
+}
+
+/* Let clicks pass through to the ripple canvas on the FV slides */
+.fv-top-ripples .slide-inner {
+  pointer-events: none;
+}
+
+.swiper-feedback .swiper-slide {
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease,
+    background-color 0.5s ease;
+  transform: scale(0.92);
+  background-color: #eef3f7;
+}
+.swiper-feedback .swiper-slide-active {
+  transform: scale(1);
+  background-color: #fcfdfd !important;
+}
+
+#reviews .swiper-slide {
+  background-color: #eaf3ef;
+}
+#reviews .swiper-slide-active {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Our Cases slider: for PC: active scale 1, others scale 0.7 */
+@media (min-width: 768px) {
+  .swiper-our-cases .swiper-wrapper {
+    align-items: stretch;
+  }
+  .swiper-our-cases .swiper-slide {
+    transition: transform 0.5s ease;
+    transform: scale(0.7);
+  }
+  .swiper-our-cases .swiper-slide-active {
+    transform: scale(1);
+  }
+}
+
+/* Our Cases: 2 flex panels, hover/active increases one panel; dots switch active */
+.cases-panels-row {
+  align-items: stretch;
+}
+@media (min-width: 768px) {
+  .cases-panel {
+    flex: 1 1 0%;
+    transition: flex 0.5s ease;
+    min-width: 0;
+  }
+  .cases-panel:hover,
+  .cases-panel.active {
+    flex: 1.5 1 0%;
+  }
+}
+.cases-dot {
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    background-color 0.25s ease;
+}
+.cases-dot:not(.cases-dot-active) {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #c8d2d0;
+}
+.cases-dot.cases-dot-active {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: #125941;
+}
+
+.swiper-investment-steps .swiper-wrapper {
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .swiper-investment-steps .swiper-slide {
+    transition: transform 0.5s ease;
+    transform: scale(0.8);
+  }
+}
+
+.swiper-investment-steps .swiper-slide-active {
+  transform: scale(1);
+}
+
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  .writing-vertical {
+    writing-mode: horizontal-tb;
+  }
+
+  .swiper-feedback .swiper-slide {
+    transition:
+      transform 0.5s ease,
+      opacity 0.5s ease,
+      background-color 0.5s ease;
+    transform: scale(0.8);
+  }
+  .swiper-feedback .swiper-slide-active {
+    transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.7) !important;
+  }
+}
