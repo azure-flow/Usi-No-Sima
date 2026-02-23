@@ -17,6 +17,7 @@
 html {
   overflow-y: scroll;
   scrollbar-width: auto;
+  scroll-behavior: smooth;
   -ms-overflow-style: scrollbar;
 }
 
@@ -49,10 +50,6 @@ body {
 
 .font-inter {
   font-family: "Inter", sans-serif !important;
-}
-
-.font-bodoni {
-  font-family: "Bodoni Moda", serif !important;
 }
 
 .section-container {
