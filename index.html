@@ -16,29 +16,49 @@
   <script src="assets/css/tailwind.css"></script>
   <script src="assets/js/swiper-bundle.min.js"></script>
   <script src="assets/js/aos.js"></script>
+  <style>
+    @media (max-width: 1023px) {
+      #searchForm.searchForm--open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      #overlay.overlay--open {
+        display: block;
+      }
+      #sidebar.sidebar--open {
+        transform: translateX(0);
+      }
+    }
+  </style>
 </head>
 
 <body class="relative bg-[url('assets/images/bg-default.webp')] bg-center">
-  <header class="fixed w-full justify-center bg-black z-40 py-3 xl:py-4 2xl:py-[15px] px-8 xl:px-12">
+  <header class="fixed w-full justify-center bg-black z-[100] py-2 lg:py-3 xl:py-4 2xl:py-[15px] px-8 xl:px-12">
     <div class="relative w-full mx-auto flex items-center justify-between">
       <div class="flex items-center shrink-0">
         <a href="index.html">
           <img src="assets/images/logo.webp" alt="ロゴ" class="w-[200px] lg:w-[260px] xl:w-[280px] 2xl:w-[285px]" />
         </a>
       </div>
-      <div>
-        <div class="flex items-center flex-shrink items-stretch">
+      <div class="relative">
+        <div id="searchForm"
+          class="absolute md:static top-[43px] right-0 flex items-center flex-shrink items-stretch opacity-0 invisible pointer-events-none md:opacity-100 md:visible md:pointer-events-auto transition-opacity duration-300 ease-out">
           <input type="text" name="search" placeholder="商品検索"
-            class="w-full xl:w-[320px] px-5 text-[18px] placeholder:text-[#ccc] border-none outline-none bg-white text-black" />
+            class="w-[180px] lg:w-[320px] px-3 lg:px-4 xl:px-5 text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] placeholder:text-[#ccc] border-none outline-none bg-white text-black" />
           <button
-            class="bg-gradient-to-b from-[#303030] to-[#161616] border border-[#555555] text-white text-nowrap text-[18px] px-6 py-2 ml-2 transition hover:from-[#161616] hover:to-[#303030] outline-none">
+            class="bg-gradient-to-b from-[#303030] to-[#161616] border border-[#555555] text-white text-nowrap text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] px-2 lg:px-4 xl:px-6 py-1 xl:py-2 ml-1 xl:ml-2 transition hover:from-[#161616] hover:to-[#303030] outline-none">
             検索
           </button>
         </div>
+        <button id="searchBtn" class="block md:hidden p-2 bg-white rounded-full flex items-center justify-center">
+          <i class="fa-solid fa-search text-black text-[15px]" aria-hidden="true"></i>
+          <span class="sr-only">検索</span>
+        </button>
       </div>
     </div>
   </header>
-  <div class="w-full h-[44px] lg:h-[60px] xl:h-[85px]"></div>
+  <div class="w-full h-[55px] lg:h-[60px] xl:h-[85px]"></div>
   <section id="fv">
     <div class="w-full">
       <div class="relative w-full swiper swiper-fv-top">
@@ -57,20 +77,33 @@
     </div>
   </section>
   <main id="main" class="pt-10 lg:pt-12 xl:pt-18 2xl:pt-20 xl:pb-9">
-    <div class="max-w-[1400px] mx-auto flex gap-[52px]">
-      <div id="sidebar" class="w-full max-w-[280px]">
+    <div
+      class="max-w-[680px] lg:max-w-[800px] xl:max-w-[1200px] 2xl:max-w-[1400px] mx-auto flex gap-6 lg:gap-8 xl:gap-10 2xl:gap-[52px]">
+      <div id="overlay" class="hidden lg:block w-[100vw] h-[100vh] fixed inset-0 z-30 bg-[#00000075] cursor-pointer"></div>
+      <div id="sidebar"
+        class="fixed lg:static -translate-x-full lg:translate-x-0 w-[200px] h-full p-4 lg:p-0 top-0 z-40 pt-[55px] w-[200px] lg:w-[220px] xl:w-[260px] 2xl:w-[280px] bg-black lg:bg-transparent transition-transform duration-300 ease-out">
+        <button id="handleSidebarBtn" type="button"
+          class="absolute block lg:hidden top-1/2 right-0 -translate-y-1/2 translate-x-full p-1 bg-white flex items-center justify-center w-8 h-8">
+          <i id="sidebarBtnIconOpen" class="fa-solid fa-gear text-black text-[15px]" aria-hidden="true"></i>
+          <i id="sidebarBtnIconClose" class="fa-solid fa-xmark text-black text-[17px] hidden" aria-hidden="true"></i>
+          <span id="sidebarBtnLabel" class="sr-only">カテゴリを開く</span>
+        </button>
         <div class="flex flex-col">
           <div
             class="flex items-center justify-between bg-gradient-to-r from-[#a50000] to-[#5f0000] py-1 px-6 relative overflow-hidden">
-            <span class="text-white text-[22px] font-bold tracking-wide z-10">闘牛タオル</span>
-            <img src="assets/images/mark00.webp" alt="牛のシルエット" class="w-[90px] pointer-events-none select-none">
+            <span
+              class="text-white text-[16px] lg:text-[18px] xl:text-[20px] xl:text-[22px] font-bold tracking-wide z-10">闘牛タオル</span>
+            <img src="assets/images/mark00.webp" alt="牛のシルエット"
+              class="hidden md:block w-[60px] lg:w-[70px] xl:w-[80px] 2xl:w-[90px] pointer-events-none select-none">
           </div>
           <div class="flex flex-col">
             <div class="flex items-center justify-between bg-[#222222] py-2 px-6 relative overflow-hidden">
-              <span class="text-white text-[18px] font-bold tracking-wide z-10">定番タオル</span>
+              <span
+                class="text-white text-[14px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] font-bold tracking-wide z-10">定番タオル</span>
             </div>
             <ul class="py-3 xl:py-4 flex flex-col gap-3">
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
+              <li
+                class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
                 <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                   <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                     stroke-linecap="round" stroke-linejoin="round" />
@@ -81,17 +114,20 @@
           </div>
           <div class="flex flex-col">
             <div class="flex items-center justify-between bg-[#222222] py-2 px-6 relative overflow-hidden">
-              <span class="text-white text-[18px] font-bold tracking-wide z-10">SPカラータオル</span>
+              <span
+                class="text-white text-[14px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] font-bold tracking-wide z-10">SPカラータオル</span>
             </div>
             <ul class="py-3 xl:py-4 flex flex-col gap-3">
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
+              <li
+                class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
                 <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                   <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                     stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 顔良プリント 50枚 35,800〜
               </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
+              <li
+                class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
                 <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                   <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                     stroke-linecap="round" stroke-linejoin="round" />
@@ -102,24 +138,28 @@
           </div>
           <div class="flex flex-col">
             <div class="flex items-center justify-between bg-[#222222] py-2 px-6 relative overflow-hidden">
-              <span class="text-white text-[18px] font-bold tracking-wide z-10">平織りタオル</span>
+              <span
+                class="text-white text-[14px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] font-bold tracking-wide z-10">平織りタオル</span>
             </div>
             <ul class="py-3 xl:py-4 flex flex-col gap-3">
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
+              <li
+                class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
                 <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                   <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                     stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 顔良プリント　50枚 46,000〜
               </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
+              <li
+                class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
                 <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                   <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                     stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 看抜プリント　50枚 50,000〜
               </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
+              <li
+                class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
                 <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                   <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                     stroke-linecap="round" stroke-linejoin="round" />
@@ -128,107 +168,121 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div class="flex flex-col pt-4">
-          <div
-            class="flex items-center justify-between bg-gradient-to-r from-[#a50000] to-[#5f0000] py-1 px-6 relative overflow-hidden">
-            <span class="text-white text-[22px] font-bold tracking-wide z-10">闘牛タオル</span>
-            <img src="assets/images/mark00.webp" alt="牛のシルエット" class="w-[90px] pointer-events-none select-none">
+          <div class="flex flex-col pt-4">
+            <div
+              class="flex items-center justify-between bg-gradient-to-r from-[#a50000] to-[#5f0000] py-1 px-6 relative overflow-hidden">
+              <span
+                class="text-white text-[16px] lg:text-[18px] xl:text-[20px] xl:text-[22px] font-bold tracking-wide z-10">闘牛タオル</span>
+              <img src="assets/images/mark00.webp" alt="牛のシルエット"
+                class="hidden md:block w-[60px] lg:w-[70px] xl:w-[80px] 2xl:w-[90px] pointer-events-none select-none">
+            </div>
+            <div class="flex flex-col">
+              <ul class="py-3 xl:py-4 flex flex-col gap-3">
+                <li
+                  class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
+                  <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  ハッピ
+                </li>
+                <li
+                  class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
+                  <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  のぼり
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="flex flex-col">
-            <ul class="py-3 xl:py-4 flex flex-col gap-3">
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
-                <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                ハッピ
-              </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
-                <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                のぼり
-              </li>
-            </ul>
+          <div class="flex flex-col pt-4">
+            <div
+              class="flex items-center justify-between bg-gradient-to-r from-[#a50000] to-[#5f0000] py-1 px-6 relative overflow-hidden">
+              <span
+                class="text-white text-[16px] lg:text-[18px] xl:text-[20px] xl:text-[22px] font-bold tracking-wide z-10">勝鬨衣装</span>
+              <img src="assets/images/mark00.webp" alt="牛のシルエット"
+                class="hidden md:block w-[60px] lg:w-[70px] xl:w-[80px] 2xl:w-[90px] pointer-events-none select-none">
+            </div>
+            <div class="flex flex-col">
+              <ul class="py-3 xl:py-4 flex flex-col gap-3">
+                <li
+                  class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
+                  <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  ガウン
+                </li>
+                <li
+                  class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
+                  <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  マフラー
+                </li>
+                <li
+                  class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
+                  <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  面綱
+                </li>
+                <li
+                  class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
+                  <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  顔飾り
+                </li>
+                <li
+                  class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
+                  <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  角巻き
+                </li>
+                <li
+                  class="flex items-center gap-2 xl:gap-3 text-white text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] px-2 xl:pl-4 cursor-pointer">
+                  <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  一式セット
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-col pt-4">
+            <button
+              class="btn-line flex items-center justify-center gap-3 bg-[#06C755] text-white text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[20px] pr-2 py-2 lg:py-2 xl:py-[10px] hover:bg-white hover:text-[#06C755] duration-200 group relative overflow-hidden">
+              <span class="relative w-[30px] lg:w-[35px] xl:w-[40px] 2xl:w-[45px] aspect-square flex items-center">
+                <img src="assets/images/line-mark.webp"
+                  class="absolute inset-0 w-[30px] lg:w-[35px] xl:w-[40px] 2xl:w-[45px] transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+                  alt="Line Mark">
+                <img src="assets/images/line-mark-green.webp"
+                  class="absolute inset-0 w-[30px] lg:w-[35px] xl:w-[40px] 2xl:w-[45px] transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                  alt="Line Mark Green">
+              </span>
+              友達追加
+            </button>
           </div>
         </div>
-        <div class="flex flex-col pt-4">
-          <div
-            class="flex items-center justify-between bg-gradient-to-r from-[#a50000] to-[#5f0000] py-1 px-6 relative overflow-hidden">
-            <span class="text-white text-[22px] font-bold tracking-wide z-10">勝鬨衣装</span>
-            <img src="assets/images/mark00.webp" alt="牛のシルエット" class="w-[90px] pointer-events-none select-none">
-          </div>
-          <div class="flex flex-col">
-            <ul class="py-3 xl:py-4 flex flex-col gap-3">
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
-                <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                ガウン
-              </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
-                <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                マフラー
-              </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
-                <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                面綱
-              </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
-                <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                顔飾り
-              </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
-                <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                角巻き
-              </li>
-              <li class="flex items-center gap-2 xl:gap-3 text-white text-[16px] px-2 xl:pl-4 cursor-pointer">
-                <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                一式セット
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="flex flex-col pt-4">
-          <button
-            class="btn-line flex items-center justify-center gap-3 bg-[#06C755] text-white text-[20px] pr-2 py-[10px] hover:bg-white hover:text-[#06C755] duration-200 group relative overflow-hidden">
-            <span class="relative w-[45px] h-[45px] flex items-center">
-              <img src="assets/images/line-mark.webp"
-                class="absolute inset-0 w-[45px] transition-opacity duration-300 opacity-100 group-hover:opacity-0"
-                alt="Line Mark">
-              <img src="assets/images/line-mark-green.webp"
-                class="absolute inset-0 w-[45px] transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-                alt="Line Mark Green">
-            </span>
-            友達追加
-          </button>
-        </div>
+
       </div>
       <div id="content" class="flex-1">
         <div class="w-full">
           <div class="flex flex-col items-center">
             <img src="assets/images/mark01.webp" alt="マーク" class="w-[60px] pointer-events-none select-none">
-            <h3 class="text-[24px] xl:text-[36px] text-white font-medium tracking-wide">お知らせ</h3>
+            <h3 class="text-[24px] lg:text-[28px] xl:text-[32px] 2xl:text-[36px] text-white font-medium tracking-wide">
+              お知らせ</h3>
           </div>
-          <div class="w-full grid mt-10 border-t border-[#818181]">
+          <div class="w-full grid mt-6 lg:mt-8 xl:mt-10 border-t border-[#818181]">
             <div class="w-full flex gap-4 py-4 xl:py-8 border-b border-[#818181]">
               <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
                 <span>2026.2.18 </span>
@@ -268,9 +322,11 @@
         <div class="w-full pt-20">
           <div class="flex flex-col items-center">
             <img src="assets/images/mark01.webp" alt="マーク" class="w-[60px] pointer-events-none select-none">
-            <h3 class="text-[24px] xl:text-[36px] text-white font-medium tracking-wide">おすすめ商品</h3>
+            <h3 class="text-[24px] lg:text-[28px] xl:text-[32px] 2xl:text-[36px] text-white font-medium tracking-wide">
+              おすすめ商品</h3>
           </div>
-          <div class="w-full grid grid-cols-4 gap-x-8 gap-y-12 mt-10">
+          <div
+            class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 lg:gap-x-6 lg:gap-x-8 gap-y-8 lg:gap-y-10 xl:gap-y-12 mt-6 lg:mt-8 xl:mt-10">
             <div class="flex flex-col gap-4">
               <img src="assets/images/recommended01.webp" alt="商品画像" class="w-full h-auto">
               <div class="flex flex-col gap-2 text-white text-[14px]">
@@ -332,12 +388,13 @@
         <div class="w-full pt-20">
           <div class="flex flex-col items-center">
             <img src="assets/images/mark01.webp" alt="マーク" class="w-[60px] pointer-events-none select-none">
-            <h3 class="text-[24px] xl:text-[36px] text-white font-medium tracking-wide">制作例</h3>
+            <h3 class="text-[24px] lg:text-[28px] xl:text-[32px] 2xl:text-[36px] text-white font-medium tracking-wide">
+              制作例</h3>
           </div>
           <div
-            class="w-full grid grid-cols-4 gap-4 mt-10 p-10 bg-[url('assets/images/bg-product-example.webp')] bg-cover bg-center">
+            class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6 lg:mt-8 xl:mt-10 p-4 lg:p-6 xl:p-10 bg-[url('assets/images/bg-product-example.webp')] bg-cover bg-center">
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -345,7 +402,7 @@
               闘牛タオル 2025年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -353,7 +410,7 @@
               闘牛タオル 2024年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -361,7 +418,7 @@
               闘牛タオル 2023年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -369,7 +426,7 @@
               闘牛タオル 2022年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -377,7 +434,7 @@
               闘牛タオル 2021年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -385,7 +442,7 @@
               闘牛タオル 2020年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -393,7 +450,7 @@
               闘牛タオル 2019年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -401,7 +458,7 @@
               闘牛タオル 2018年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -409,7 +466,7 @@
               闘牛タオル 2017年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -417,7 +474,7 @@
               闘牛タオル 2016年
             </button>
             <button
-              class="flex items-center gap-2 xl:gap-3 text-white text-[14px] xl:text-[16px] py-6 px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
+              class="flex items-center gap-2 xl:gap-3 text-white text-[12px] lg:text-[14px] xl:text-[16px] py-2 lg:py-4 xl:py-6 px-3 xl:px-5 border border-[#818181] bg-black/40 hover:bg-black/80 transition">
               <svg class="w-[9px] text-[#b40000]" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="0,2 6,8 0,14" fill="none" stroke="currentColor" stroke-width="3"
                   stroke-linecap="round" stroke-linejoin="round" />
@@ -430,9 +487,10 @@
     </div>
   </main>
   <footer id="footer" class="relative w-full bg-black pt-[50px] pb-10 mt-16">
-    <div class="w-full max-w-[1400px] mx-auto flex justify-between items-start">
+    <div
+      class="w-full max-w-[680px] lg:max-w-[800px] xl:max-w-[1200px] 2xl:max-w-[1400px] mx-auto flex justify-between items-start">
       <div class="w-full flex flex-col gap-8 relative z-10">
-        <div class="w-full lg:w-1/2 flex justify-center lg:justify-start items-center">
+        <div class="w-full lg:w-1/2 flex justify-start items-center">
           <img src="assets/images/logo.webp" alt="ちゃちゃまる不動産DX Logo"
             class="max-w-[180px] lg:max-w-[200px] xl:max-w-[250px] w-full h-auto">
         </div>
@@ -441,7 +499,7 @@
           <a href="tel:098-923-3559">TEL.098-923-3559</a>
         </div>
       </div>
-      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-center">
+      <div class="w-full lg:w-1/2 flex justify-end items-center">
         <a href="privacy-policy.html" class="text-white text-[14px] xl:text-[16px]">プライバシーポリシー</a>
       </div>
     </div>
@@ -521,6 +579,52 @@
     </div>
   </div>
   <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var searchBtn = document.getElementById('searchBtn');
+      var searchForm = document.getElementById('searchForm');
+      if (!searchBtn || !searchForm) return;
+      searchBtn.addEventListener('click', function () {
+        searchForm.classList.toggle('searchForm--open');
+      });
+      document.addEventListener('click', function (e) {
+        if (searchForm.classList.contains('searchForm--open') &&
+          !searchForm.contains(e.target) && !searchBtn.contains(e.target)) {
+          searchForm.classList.remove('searchForm--open');
+        }
+      });
+    })();
+    (function () {
+      var handleSidebarBtn = document.getElementById('handleSidebarBtn');
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('overlay');
+      var iconOpen = document.getElementById('sidebarBtnIconOpen');
+      var iconClose = document.getElementById('sidebarBtnIconClose');
+      var label = document.getElementById('sidebarBtnLabel');
+      function isOpen() {
+        return sidebar && sidebar.classList.contains('sidebar--open');
+      }
+      function openSidebar() {
+        if (sidebar) sidebar.classList.add('sidebar--open');
+        if (overlay) overlay.classList.add('overlay--open');
+        if (iconOpen) iconOpen.classList.add('hidden');
+        if (iconClose) iconClose.classList.remove('hidden');
+        if (label) label.textContent = '閉じる';
+      }
+      function closeSidebar() {
+        if (sidebar) sidebar.classList.remove('sidebar--open');
+        if (overlay) overlay.classList.remove('overlay--open');
+        if (iconOpen) iconOpen.classList.remove('hidden');
+        if (iconClose) iconClose.classList.add('hidden');
+        if (label) label.textContent = 'カテゴリを開く';
+      }
+      function toggleSidebar() {
+        if (isOpen()) closeSidebar(); else openSidebar();
+      }
+      if (handleSidebarBtn) handleSidebarBtn.addEventListener('click', toggleSidebar);
+      if (overlay) overlay.addEventListener('click', closeSidebar);
+    })();
+  </script>
 </body>
 
 </html>
