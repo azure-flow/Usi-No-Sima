@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
       delay: 2500,
       disableOnInteraction: false,
     },
+    navigation: {
+      nextEl: ".fv-top-next-button",
+      prevEl: ".fv-top-prev-button",
+    },
   });
 
   // Testimonial Swiper
@@ -154,9 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return false;
   }
 
-  // On load: if hash is set, use it; otherwise rely on Intersection Observer
   if (updateActiveFromHash()) {
-    // hash drove state; observer will take over on scroll
   } else {
     setActiveNav('home');
   }
@@ -178,4 +180,58 @@ document.addEventListener("DOMContentLoaded", function () {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
+
+  // -------------------------  Search form (mobile)  -----------------------------------
+  const searchBtn = document.getElementById("searchBtn");
+  const searchForm = document.getElementById("searchForm");
+  if (searchBtn && searchForm) {
+    searchBtn.addEventListener("click", function () {
+      searchForm.classList.toggle("searchForm--open");
+    });
+    document.addEventListener("click", function (e) {
+      if (
+        searchForm.classList.contains("searchForm--open") &&
+        !searchForm.contains(e.target) &&
+        !searchBtn.contains(e.target)
+      ) {
+        searchForm.classList.remove("searchForm--open");
+      }
+    });
+  }
+
+  // -------------------------  Sidebar (mobile)  -----------------------------------
+  const handleSidebarBtn = document.getElementById("handleSidebarBtn");
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+  const sidebarBtnIconOpen = document.getElementById("sidebarBtnIconOpen");
+  const sidebarBtnIconClose = document.getElementById("sidebarBtnIconClose");
+  const sidebarBtnLabel = document.getElementById("sidebarBtnLabel");
+
+  function isSidebarOpen() {
+    return sidebar && sidebar.classList.contains("sidebar--open");
+  }
+
+  function openSidebar() {
+    if (sidebar) sidebar.classList.add("sidebar--open");
+    if (overlay) overlay.classList.add("overlay--open");
+    if (sidebarBtnIconOpen) sidebarBtnIconOpen.classList.add("hidden");
+    if (sidebarBtnIconClose) sidebarBtnIconClose.classList.remove("hidden");
+    if (sidebarBtnLabel) sidebarBtnLabel.textContent = "閉じる";
+  }
+
+  function closeSidebar() {
+    if (sidebar) sidebar.classList.remove("sidebar--open");
+    if (overlay) overlay.classList.remove("overlay--open");
+    if (sidebarBtnIconOpen) sidebarBtnIconOpen.classList.remove("hidden");
+    if (sidebarBtnIconClose) sidebarBtnIconClose.classList.add("hidden");
+    if (sidebarBtnLabel) sidebarBtnLabel.textContent = "カテゴリを開く";
+  }
+
+  function toggleSidebar() {
+    if (isSidebarOpen()) closeSidebar();
+    else openSidebar();
+  }
+
+  if (handleSidebarBtn) handleSidebarBtn.addEventListener("click", toggleSidebar);
+  if (overlay) overlay.addEventListener("click", closeSidebar);
 });
