@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>USI NO SIMA | Product Detail</title>
+  <title>USI NO SIMA | ニュース一覧</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.webp" />
@@ -63,36 +63,43 @@
   <div class="w-full h-[55px] lg:h-[60px] xl:h-[85px]"></div>
   <section id="fv">
     <div class="w-full">
-      <div class="relative w-full">
+      <div class="relative w-full swiper swiper-fv-top">
         <div class="swiper-wrapper w-full relative">
           <div class="z-20 swiper-slide w-full h-full ">
             <img src="assets/images/fv-top01.webp" alt="メインビジュアル"
-              class="w-[150%] max-w-[150%] md:max-w-[100%] md:w-full h-[400px] object-center left-1/2 -translate-x-1/2 relative">
+              class="w-[150%] max-w-[150%] md:max-w-[100%] md:w-full h-full object-center left-1/2 -translate-x-1/2 relative">
+          </div>
+          <div class="z-20 swiper-slide w-full h-full ">
+            <img src="assets/images/fv-top02.webp" alt="メインビジュアル"
+              class="w-[150%] max-w-[150%] md:max-w-[100%] md:w-full h-full object-center left-1/2 -translate-x-1/2 relative">
+          </div>
+          <div class="z-20 swiper-slide w-full h-full ">
+            <img src="assets/images/fv-top03.webp" alt="メインビジュアル"
+              class="w-[150%] max-w-[150%] md:max-w-[100%] md:w-full h-full object-center left-1/2 -translate-x-1/2 relative">
           </div>
         </div>
-        <script>
-          // Initialize Swiper (make sure SwiperJS is loaded!)
-          document.addEventListener('DOMContentLoaded', function () {
-            const swiper = new Swiper('#productImageSlider', {
-              loop: true,
-              zoom: true,
-              slidesPerView: 8,
-              spaceBetween: 8,
-              pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-              },
-              autoplay: {
-                delay: 2500,
-              },
-              speed: 600,
-            });
-          });
-        </script>
+        <button
+          class="fv-top-prev-button hidden md:flex w-12 lg:w-16 xl:w-20 aspect-[1] justify-center items-center absolute top-1/2 left-0 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/60 transition p-2">
+          <svg class="w-[18px] lg:w-[20px] xl:w-[24px] h-[25px] lg:h-[30px] xl:h-[35px]" viewBox="0 0 24 35" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M17.4785 35.0014L7.62939e-06 17.5007L17.4785 0L23.998 6.43834L12.9496 17.5007L23.998 28.5633L17.4785 35.0014Z"
+              fill="#B40000" />
+          </svg>
+        </button>
+        <button
+          class="fv-top-next-button hidden md:flex w-12 lg:w-16 xl:w-20 aspect-[1] justify-center items-center absolute top-1/2 right-0  -translate-y-1/2 z-10 bg-white/40 hover:bg-white/60 transition p-2">
+          <svg class="w-[18px] lg:w-[20px] xl:w-[24px] h-[25px] lg:h-[30px] xl:h-[35px]" viewBox="0 0 24 35" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M6.52148 35.0014L24 17.5007L6.52148 0L0 6.43834L11.0484 17.5007L0 28.5633L6.52148 35.0014Z"
+              fill="#B40000" />
+          </svg>
+        </button>
       </div>
     </div>
   </section>
-  <main id="main" class="pt-6 lg:pt-8 xl:pt-10 2xl:pt-12 xl:pb-9">
+  <main id="main" class="pt-10 lg:pt-12 xl:pt-18 2xl:pt-20 xl:pb-9">
     <div
       class="lg:max-w-[800px] xl:max-w-[1200px] 2xl:max-w-[1400px] mx-auto flex gap-6 lg:gap-8 xl:gap-10 2xl:gap-[52px]">
       <div id="overlay"
@@ -296,234 +303,117 @@
           </div>
         </div>
       </div>
-      <div id="content" class="flex-1 md:max-w-[680px] lg:max-[545px] xl:max-w-[900px] 2xl:max-w-[1068px] mx-auto">
+      <div id="content" class="flex-1 md:max-w-[680px] lg:max-w-full mx-auto">
         <div class="w-full px-7 md:px-0">
-          <div id="product-detail-header" class="w-full pb-4 border-b border-[#333]">
-            <div class="flex justify-between">
+          <div class="flex flex-col items-center gap-1">
+            <img src="assets/images/mark01.webp" alt="マーク"
+              class="w-[40px] lg:w-[50px] xl:w-[60px] pointer-events-none select-none">
+            <h3 class="text-[24px] lg:text-[28px] xl:text-[32px] 2xl:text-[36px] text-white font-medium tracking-wide">
+              お知らせ
+            </h3>
+          </div>
+          <div class="w-full grid mt-6 lg:mt-8 xl:mt-10 border-t border-[#818181]">
+            <div
+              class="w-full flex flex-col md:flex-row gap-1 md:gap-2 xl:gap-4 py-4 xl:py-8 border-b border-[#818181]">
+              <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
+                <span>2026.2.18 </span>
+              </div>
               <div>
-                <button type="button"
-                  class="btn-line text-white flex items-center gap-2 hover:text-white/70 duration-200">
-                  <i class="fa-solid fa-chevron-left text-lg"></i>
-                  前の商品
-                </button>
+                <p
+                  class="text-[14px] xl:text-[16px] text-white leading-[1.4] md:leading-[1.7] tracking-wide hover:underline hover:font-semibold underline-offset-4 cursor-pointer transition">
+                  ★重要なお知らせ★サイトリニューアルに伴う会員サービス終了のお知らせ。
+                  このたび当サイトは、内容の充実と情報発信の強化を目的として、新しいサイトへ移行することとなりました。
+                  詳しい移行時期については改めてご案内いたします
+                </p>
               </div>
-              <div class="flex items-center gap-4">
-
+            </div>
+            <div
+              class="w-full flex flex-col md:flex-row gap-1 md:gap-2 xl:gap-4 py-4 xl:py-8 border-b border-[#818181]">
+              <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
+                <span>2026.2.11 </span>
               </div>
               <div>
-                <button type="button"
-                  class="btn-line text-white flex items-center gap-2 hover:text-white/70 duration-200">
-                  次の商品
-                  <i class="fa-solid fa-chevron-right text-lg"></i>
-                </button>
+                <p
+                  class="text-[14px] xl:text-[16px] text-white leading-[1.4] md:leading-[1.7] tracking-wide hover:underline hover:font-semibold underline-offset-4 cursor-pointer transition">
+                  ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+                </p>
               </div>
+            </div>
+            <div
+              class="w-full flex flex-col md:flex-row gap-1 md:gap-2 xl:gap-4 py-4 xl:py-8 border-b border-[#818181]">
+              <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
+                <span>2026.2.11 </span>
+              </div>
+              <div>
+                <p
+                  class="text-[14px] xl:text-[16px] text-white leading-[1.4] md:leading-[1.7] tracking-wide hover:underline hover:font-semibold underline-offset-4 cursor-pointer transition">
+                  ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full flex flex-col md:flex-row gap-1 md:gap-2 xl:gap-4 py-4 xl:py-8 border-b border-[#818181]">
+              <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
+                <span>2026.2.11 </span>
+              </div>
+              <div>
+                <p
+                  class="text-[14px] xl:text-[16px] text-white leading-[1.4] md:leading-[1.7] tracking-wide hover:underline hover:font-semibold underline-offset-4 cursor-pointer transition">
+                  ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full flex flex-col md:flex-row gap-1 md:gap-2 xl:gap-4 py-4 xl:py-8 border-b border-[#818181]">
+              <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
+                <span>2026.2.11 </span>
+              </div>
+              <div>
+                <p
+                  class="text-[14px] xl:text-[16px] text-white leading-[1.4] md:leading-[1.7] tracking-wide hover:underline hover:font-semibold underline-offset-4 cursor-pointer transition">
+                  ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full flex flex-col md:flex-row gap-1 md:gap-2 xl:gap-4 py-4 xl:py-8 border-b border-[#818181]">
+              <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
+                <span>2026.2.11 </span>
+              </div>
+              <div>
+                <p
+                  class="text-[14px] xl:text-[16px] text-white leading-[1.4] md:leading-[1.7] tracking-wide hover:underline hover:font-semibold underline-offset-4 cursor-pointer transition">
+                  ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full flex flex-col md:flex-row gap-1 md:gap-2 xl:gap-4 py-4 xl:py-8 border-b border-[#818181]">
+              <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
+                <span>2026.2.11 </span>
+              </div>
+              <div>
+                <p
+                  class="text-[14px] xl:text-[16px] text-white leading-[1.4] md:leading-[1.7] tracking-wide hover:underline hover:font-semibold underline-offset-4 cursor-pointer transition">
+                  ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-full flex flex-col md:flex-row gap-1 md:gap-2 xl:gap-4 py-4 xl:py-8 border-b border-[#818181]">
+              <div class="text-[14px] xl:text-[16px] text-[#818181] leading-[1.7] tracking-wide">
+                <span>2026.2.1 </span>
+              </div>
+              <div>
+                <p
+                  class="text-[14px] xl:text-[16px] text-white leading-[1.4] md:leading-[1.7] tracking-wide hover:underline hover:font-semibold underline-offset-4 cursor-pointer transition">
+                  ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+                </p>
+              </div>
+            </div>
+            <div class="w-full bg-white">
             </div>
           </div>
-          <!-- おすすめ商品 -->
-          <section class="w-full mt-6 lg:mt-8 xl:mt-10">
-            <div class="flex flex-col lg:flex-row gap-8">
-              <div class="flex flex-row w-full lg:w-auto gap-6">
-                <div class="flex-shrink-0 w-full max-w-[400px] lg:max-w-[480px] xl:max-w-[540px] 2xl:max-w-[600px]">
-                  <div class="w-full">
-                    <!-- Main Image Swiper -->
-                    <div
-                      class="swiper mainImageSwiper aspect-w-1 aspect-h-1 w-full rounded-lg overflow-hidden border border-[#ccc] bg-black shadow mb-4">
-                      <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                          <img src="assets/images/recommended01.webp" alt="商品画像1"
-                            class="zoomable object-contain w-full h-full transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide">
-                          <img src="assets/images/recommended02.webp" alt="商品画像2"
-                            class="zoomable object-contain w-full h-full transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide">
-                          <img src="assets/images/recommended03.webp" alt="商品画像3"
-                            class="zoomable object-contain w-full h-full transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide">
-                          <img src="assets/images/recommended04.webp" alt="商品画像4"
-                            class="zoomable object-contain w-full h-full transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide">
-                          <img src="assets/images/recommended05.webp" alt="商品画像5"
-                            class="zoomable object-contain w-full h-full transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide">
-                          <img src="assets/images/recommended06.webp" alt="商品画像6"
-                            class="zoomable object-contain w-full h-full transition-all duration-300" />
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Thumb List Swiper -->
-                    <div class="swiper thumbImageSwiper mt-2">
-                      <div class="swiper-wrapper">
-                        <div class="swiper-slide cursor-pointer border border-[#eee] rounded overflow-hidden">
-                          <img src="assets/images/recommended01.webp" alt="商品画像1サムネイル"
-                            class="object-contain w-full h-auto transition-all duration-300 filter-[black]" />
-                        </div>
-                        <div class="swiper-slide cursor-pointer border border-[#eee] rounded overflow-hidden">
-                          <img src="assets/images/recommended02.webp" alt="商品画像2サムネイル"
-                            class="object-contain w-full h-auto transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide cursor-pointer border border-[#eee] rounded overflow-hidden">
-                          <img src="assets/images/recommended03.webp" alt="商品画像3サムネイル"
-                            class="object-contain w-full h-auto transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide cursor-pointer border border-[#eee] rounded overflow-hidden">
-                          <img src="assets/images/recommended04.webp" alt="商品画像4サムネイル"
-                            class="object-contain w-full h-auto transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide cursor-pointer border border-[#eee] rounded overflow-hidden">
-                          <img src="assets/images/recommended05.webp" alt="商品画像5サムネイル"
-                            class="object-contain w-full h-auto transition-all duration-300" />
-                        </div>
-                        <div class="swiper-slide cursor-pointer border border-[#eee] rounded overflow-hidden">
-                          <img src="assets/images/recommended06.webp" alt="商品画像6サムネイル"
-                            class="object-contain w-full h-auto transition-all duration-300" />
-                        </div>
-                      </div>
-                    </div>
-                    <script>
-                      document.addEventListener('DOMContentLoaded', function () {
-                        var thumbSwiper = new Swiper('.thumbImageSwiper', {
-                          slidesPerView: 4,
-                          spaceBetween: 8,
-                          watchSlidesProgress: true,
-                          breakpoints: {
-                            640: { slidesPerView: 4 },
-                            1024: { slidesPerView: 6 },
-                          },
-                        });
-                        var mainSwiper = new Swiper('.mainImageSwiper', {
-                          spaceBetween: 10,
-                          thumbs: {
-                            swiper: thumbSwiper
-                          }
-                        });
-                      });
-                    </script>
-                  </div>
-                </div>
-              </div>
-              <div class="flex-1 pt-4 lg:pt-0 flex flex-col gap-4">
-                <h2 class="text-white text-[20px] lg:text-[24px] xl:text-[28px] font-bold mb-1">定番 白タオル 顔料プリント 10枚</h2>
-                <span class="text-[#b40000] text-[18px] lg:text-[22px] xl:text-[24px] font-semibold">17,500円～(税込)</span>
-                <div class="text-white text-[14px] lg:text-[16px] xl:text-[18px] leading-relaxed space-y-2">
-                  <p>
-                    厚手で高品質な白タオルに顔料プリントを施した定番人気商品。<br>
-                    10枚セット価格。チーム名やオリジナルロゴをプリント可能です。
-                  </p>
-                  <ul class="list-disc list-inside pl-2 mt-2 text-white/80 text-[13px] lg:text-[15px]">
-                    <li>サイズ：約34cm x 85cm</li>
-                    <li>素材：綿100%</li>
-                    <li>プリント方法：顔料プリント</li>
-                    <li>納期：約2週間</li>
-                  </ul>
-                </div>
-                <div class="flex items-center gap-2 mt-3">
-                  <button
-                    class="bg-[#b40000] text-white px-6 py-2 rounded hover:bg-[#d93d3d] transition font-bold">カートに追加</button>
-                  <button
-                    class="bg-[#06C755] text-white px-5 py-2 rounded flex items-center gap-2 font-bold hover:bg-white hover:text-[#06C755] border border-[#06C755] transition">
-                    <img src="assets/images/line-mark.webp" alt="Line" class="w-6 h-6"> LINEで問い合わせ
-                  </button>
-                </div>
-                <div class="mt-4">
-                  <span
-                    class="px-3 py-1 bg-[#333] text-white rounded text-[13px]">※こちらの商品は受注生産となります。ご注文後、完成イメージをLINEまたはメールにてご連絡いたします。</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-col gap-4 mt-6 lg:mt-8 xl:mt-10">
-              <div id="related-products" class="w-full border-b border-[#333]">
-                <h3 class="text-white text-[18px] lg:text-[22px] xl:text-[24px] font-bold mb-1">おすすめ商品</h3>
-              </div>
-              <div class="w-full overflow-hidden">
-                <div id="productImageSlider" class="swiper-container">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended01.webp" alt="商品画像1"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended02.webp" alt="商品画像2"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended03.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended04.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended05.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended06.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended01.webp" alt="商品画像1"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended02.webp" alt="商品画像2"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended03.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended04.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended05.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended06.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended01.webp" alt="商品画像1"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended02.webp" alt="商品画像2"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended03.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended04.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended05.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="assets/images/recommended06.webp" alt="商品画像3"
-                        class="w-full object-cover rounded-md transition-transform duration-300" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <script>
-            function changeMainImage(src) {
-              document.getElementById('mainProductImage').src = src;
-            }
-          </script>
         </div>
       </div>
     </div>
@@ -558,38 +448,6 @@
     <i class="fa-solid fa-chevron-up text-[15px] md:text-[16px] xl:text-[18px]" aria-hidden="true"></i>
   </button>
   <script src="assets/js/main.js"></script>
-  <script>
-    const zoomable = document.querySelectorAll('.zoomable');
-    zoomable.forEach(item => {
-      // create the lens
-      let lens = item.addEventListener('mouseenter', e => {
-        lens = document.createElement("SPAN");
-        lens.classList.add('zoom-lens');
-        lens.style.backgroundImage = `url('${item.src}')`;
-        document.body.appendChild(lens);
-        return lens;
-      });
-
-      // moving the lens
-      item.addEventListener('mousemove', e => {
-        // setting x, y
-        let rect = item.getBoundingClientRect(),
-          x = e.pageX - rect.left - window.pageXOffset - (lens.offsetWidth),
-          zoom = 2,
-          y = e.pageY - rect.top - window.pageYOffset - (lens.offsetHeight);
-
-        // positioning the lens
-        lens.style.left = (e.pageX - lens.offsetWidth - 5) + 'px';
-        lens.style.top = (e.pageY - lens.offsetHeight - 5) + 'px';
-        lens.style.backgroundSize = (item.width * zoom) + "px";
-        lens.style.backgroundPosition = "-" + ((x - 2.5) * zoom) + "px -" + ((y - 2.5) * zoom) + "px";
-      });
-
-      // remove the lens
-      item.addEventListener('mouseleave', e => lens.remove());
-    });
-
-  </script>
 </body>
 
 </html>
